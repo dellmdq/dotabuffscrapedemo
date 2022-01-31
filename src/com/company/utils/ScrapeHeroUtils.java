@@ -7,6 +7,8 @@ import org.jsoup.nodes.Element;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.List;
 
 
 import static java.lang.Double.parseDouble;
@@ -36,7 +38,8 @@ public class ScrapeHeroUtils {
         return doc;
     }
 
-    public static <T extends Hero> Hero getScrapedHero(String heroClass){
+    //Todo atomizar
+    public static <T extends Hero> T getAttributes(String heroClass){
         Document doc = getDocument(heroClass);
 
         Element cellStr = doc.select(".main tr:nth-child(2) td:nth-child(1)").first();
@@ -61,8 +64,9 @@ public class ScrapeHeroUtils {
         Integer maxDamage = HeroAttributeFormat.getSplittedAttributePart(celldamage,1);
 
         T heroScraped = null;
+
         try {
-            heroScraped = (T) Class.forName(heroClass).getDeclaredConstructor().newInstance();
+            heroScraped = (T) Class.forName("com.company.models." + StringUtils.upperCaseFirst(heroClass)).getDeclaredConstructor().newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -79,16 +83,24 @@ public class ScrapeHeroUtils {
         heroScraped.setStrength(totalStrenght);
         heroScraped.setAgility(totalAgility);
         heroScraped.setIntelligence(totalIntelligence);
-        heroScraped.setMovement_speed(parseDouble(cellSpeed.text()));
-        heroScraped.setDay_sight_range(daySight);
-        heroScraped.setNight_sight_range(nightSight);
+        heroScraped.setMovementSpeed(parseDouble(cellSpeed.text()));
+        heroScraped.setDaySightRange(daySight);
+        heroScraped.setNightSightRange(nightSight);
         heroScraped.setArmor(parseDouble(cellarmor.text()));
-        heroScraped.setBase_attack_time(parseDouble(cellattack_point.text()));
+        heroScraped.setBaseAttackTime(parseDouble(cellattack_point.text()));
         heroScraped.setMin_damage_threshold(minDamage);
         heroScraped.setMax_damage_threshold(maxDamage);
-        heroScraped.setAttack_point(parseDouble(cellattack_point.text()));
+        heroScraped.setAttackPoint(parseDouble(cellattack_point.text()));
 
         return heroScraped;
+    }
+
+    public static List<String> getCategories(String heroClass){
+        Document doc = getDocument(heroClass);
+
+        Element categoryElement = doc.select(".header-content-title h1 small").first();
+        String[] categories =  categoryElement.text().split(",");
+        return Arrays.asList(categories);
     }
 
 

@@ -1,19 +1,23 @@
 package com.company.models;
 
+import java.util.List;
+
 public abstract class Hero {
 
+    private Long id;
     private String name;
     private Double strength;
     private Double agility;
     private Double intelligence;
-    private Double movement_speed;
-    private Integer day_sight_range;
-    private Integer night_sight_range;
+    private Double movementSpeed;
+    private Integer daySightRange;
+    private Integer nightSightRange;
     private Double armor;
-    private Double base_attack_time;
-    private Integer damage_min_threshold;
-    private Integer damage_max_threshold;
-    private Double attack_point;
+    private Double baseAttackTime;
+    private Integer damageMinThreshold;
+    private Integer damageMaxThreshold;
+    private Double attackPoint;
+    private List<String> categories;
 
 
     public String getName() {
@@ -40,28 +44,28 @@ public abstract class Hero {
         this.agility = agility;
     }
 
-    public Double getMovement_speed() {
-        return movement_speed;
+    public Double getMovementSpeed() {
+        return movementSpeed;
     }
 
-    public void setMovement_speed(Double movement_speed) {
-        this.movement_speed = movement_speed;
+    public void setMovementSpeed(Double movementSpeed) {
+        this.movementSpeed = movementSpeed;
     }
 
-    public Integer getDay_sight_range() {
-        return day_sight_range;
+    public Integer getDaySightRange() {
+        return daySightRange;
     }
 
-    public void setDay_sight_range(Integer day_sight_range) {
-        this.day_sight_range = day_sight_range;
+    public void setDaySightRange(Integer daySightRange) {
+        this.daySightRange = daySightRange;
     }
 
-    public Integer getNight_sight_range() {
-        return night_sight_range;
+    public Integer getNightSightRange() {
+        return nightSightRange;
     }
 
-    public void setNight_sight_range(Integer night_sight_range) {
-        this.night_sight_range = night_sight_range;
+    public void setNightSightRange(Integer nightSightRange) {
+        this.nightSightRange = nightSightRange;
     }
 
     public Double getArmor() {
@@ -72,36 +76,36 @@ public abstract class Hero {
         this.armor = armor;
     }
 
-    public Double getBase_attack_time() {
-        return base_attack_time;
+    public Double getBaseAttackTime() {
+        return baseAttackTime;
     }
 
-    public void setBase_attack_time(Double base_attack_time) {
-        this.base_attack_time = base_attack_time;
+    public void setBaseAttackTime(Double baseAttackTime) {
+        this.baseAttackTime = baseAttackTime;
     }
 
     public Integer getMin_damage_threshold() {
-        return damage_min_threshold;
+        return damageMinThreshold;
     }
 
     public void setMin_damage_threshold(Integer min_damage_threshold) {
-        this.damage_min_threshold = min_damage_threshold;
+        this.damageMinThreshold = min_damage_threshold;
     }
 
     public Integer getMax_damage_threshold() {
-        return damage_max_threshold;
+        return damageMaxThreshold;
     }
 
     public void setMax_damage_threshold(Integer max_damage_threshold) {
-        this.damage_max_threshold = max_damage_threshold;
+        this.damageMaxThreshold = max_damage_threshold;
     }
 
-    public Double getAttack_point() {
-        return attack_point;
+    public Double getAttackPoint() {
+        return attackPoint;
     }
 
-    public void setAttack_point(Double attack_point) {
-        this.attack_point = attack_point;
+    public void setAttackPoint(Double attackPoint) {
+        this.attackPoint = attackPoint;
     }
 
     public Double getIntelligence() {
@@ -112,25 +116,48 @@ public abstract class Hero {
         this.intelligence = intelligence;
     }
 
-    //todo toString
+    public Integer getDamageMinThreshold() {
+        return damageMinThreshold;
+    }
+
+    public void setDamageMinThreshold(Integer damageMinThreshold) {
+        this.damageMinThreshold = damageMinThreshold;
+    }
+
+    public Integer getDamageMaxThreshold() {
+        return damageMaxThreshold;
+    }
+
+    public void setDamageMaxThreshold(Integer damageMaxThreshold) {
+        this.damageMaxThreshold = damageMaxThreshold;
+    }
+
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
+    }
 
     @Override
     public String toString() {
-        return "Hero{\n" +
-                "strenght=" + strength +
-                ", \nagility=" + agility +
-                ", \nintelligence=" + intelligence +
-                ", \nmovement_speed=" + movement_speed +
-                ", \nday_sight_range=" + day_sight_range +
-                ", \nnight_sight_range=" + night_sight_range +
-                ", \narmor=" + armor +
-                ", \nbase_attack_time=" + base_attack_time +
-                ", \ndamage_min_threshold=" + damage_min_threshold +
-                ", \ndamage_max_threshold=" + damage_max_threshold +
-                ", \nattack_point=" + attack_point +
+        return "Hero{" +
+                "\nname='" + name + '\'' +
+                "\n, strength=" + strength +
+                "\n, agility=" + agility +
+                "\n, intelligence=" + intelligence +
+                "\n, movementSpeed=" + movementSpeed +
+                "\n, daySightRange=" + daySightRange +
+                "\n, nightSightRange=" + nightSightRange +
+                "\n, armor=" + armor +
+                "\n, baseAttackTime=" + baseAttackTime +
+                "\n, damageMinThreshold=" + damageMinThreshold +
+                "\n, damageMaxThreshold=" + damageMaxThreshold +
+                "\n, attackPoint=" + attackPoint +
+                "\n, heroCharacteristics=" + categories + "\n" +
                 '}';
     }
 
-
-    //todo Equals
+//todo Equals
 }

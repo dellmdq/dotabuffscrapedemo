@@ -7,9 +7,9 @@ import org.jsoup.nodes.Element;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
 
+import static com.company.utils.ScrapeHeroUtils.getCategories;
 import static com.company.utils.ScrapeHeroUtils.getDocument;
 import static java.lang.Double.parseDouble;
 
@@ -25,7 +25,7 @@ public class LookingTable {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter a hero name: ");
-        String calledHero = sc.nextLine();
+        String calledHero = "alchemist"; //sc.nextLine();
         System.out.println("You have entered: " + calledHero);
 
         Document doc = getDocument(calledHero);
@@ -56,14 +56,14 @@ public class LookingTable {
         alchemist.setStrength(totalStrenght);
         alchemist.setAgility(totalAgility);
         alchemist.setIntelligence(totalIntelligence);
-        alchemist.setMovement_speed(parseDouble(cellSpeed.text()));
-        alchemist.setDay_sight_range(daySight);
-        alchemist.setNight_sight_range(nightSight);
+        alchemist.setMovementSpeed(parseDouble(cellSpeed.text()));
+        alchemist.setDaySightRange(daySight);
+        alchemist.setNightSightRange(nightSight);
         alchemist.setArmor(parseDouble(cellarmor.text()));
-        alchemist.setBase_attack_time(parseDouble(cellattack_point.text()));
+        alchemist.setBaseAttackTime(parseDouble(cellattack_point.text()));
         alchemist.setMin_damage_threshold(minDamage);
         alchemist.setMax_damage_threshold(maxDamage);
-        alchemist.setAttack_point(parseDouble(cellattack_point.text()));
+        alchemist.setAttackPoint(parseDouble(cellattack_point.text()));
 
         System.out.println(alchemist.toString());
 
@@ -78,6 +78,14 @@ public class LookingTable {
         String name = nameElement.ownText();//trae solo el nombre
         System.out.println("\n" + name);
 
+        //characteristics
+        Element categoryElement = doc.select(".header-content-title h1 small").first();
+        String[] categories =  categoryElement.text().split(",");
+        for (String s : categories){
+            System.out.println(s);
+        }
+
+        alchemist.setCategories(getCategories(calledHero));
 
     }
 }
