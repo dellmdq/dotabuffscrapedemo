@@ -1,6 +1,8 @@
 package com.company.models;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 public abstract class Hero {
 
@@ -17,7 +19,7 @@ public abstract class Hero {
     private Integer damageMinThreshold;
     private Integer damageMaxThreshold;
     private Double attackPoint;
-    private List<String> categories;
+    private Set<Category> categories;
 
 
     public String getName() {
@@ -132,11 +134,11 @@ public abstract class Hero {
         this.damageMaxThreshold = damageMaxThreshold;
     }
 
-    public List<String> getCategories() {
+    public Set<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<String> categories) {
+    public void setCategories(Set<Category> categories) {
         this.categories = categories;
     }
 
@@ -159,5 +161,17 @@ public abstract class Hero {
                 '}';
     }
 
-//todo Equals
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Hero hero = (Hero) o;
+        return id.equals(hero.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
 }
