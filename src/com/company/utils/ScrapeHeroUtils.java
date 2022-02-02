@@ -1,5 +1,6 @@
 package com.company.utils;
 
+import com.company.models.Category;
 import com.company.models.Hero;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -8,7 +9,9 @@ import org.jsoup.nodes.Element;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 import static java.lang.Double.parseDouble;
@@ -95,12 +98,19 @@ public class ScrapeHeroUtils {
         return heroScraped;
     }
 
-    public static List<String> getCategories(String heroClass){
+    public static Set<Category> getCategories(String heroClass){
         Document doc = getDocument(heroClass);
+        Set<Category> categorySet = new HashSet<>();
 
         Element categoryElement = doc.select(".header-content-title h1 small").first();
         String[] categories =  categoryElement.text().split(",");
-        return Arrays.asList(categories);
+
+        Category category = new Category();
+        for(String s : categories) {
+            category.setName(s);
+            categorySet.add(category);
+        }
+        return categorySet;
     }
 
 
