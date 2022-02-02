@@ -14,10 +14,11 @@ import static com.company.utils.ScrapeHeroUtils.getDocument;
 import static java.lang.Double.parseDouble;
 
 
-/**Draft class in which I test methods*/
-public class LookingTable {
+/**Draft class in which I test methods
+ * */
+public class Testing {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
 
         File input = new File("tmp/input.html");
         System.out.println(input.getAbsolutePath());
@@ -65,7 +66,7 @@ public class LookingTable {
         alchemist.setMax_damage_threshold(maxDamage);
         alchemist.setAttackPoint(parseDouble(cellattack_point.text()));
 
-        System.out.println(alchemist.toString());
+        System.out.println(alchemist);
 
 
 
